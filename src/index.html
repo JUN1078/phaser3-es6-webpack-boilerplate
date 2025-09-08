@@ -1,24 +1,155 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Phaser Game</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: black;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Virtual Sales Assistant - AI Role-Play</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <div class="logo">
+                    <i class="fas fa-robot"></i>
+                    <span>SalesAI Assistant</span>
+                </div>
+                <nav class="nav">
+                    <button class="nav-btn active" data-mode="roleplay">Role-Play</button>
+                    <button class="nav-btn" data-mode="training">Training</button>
+                    <button class="nav-btn" data-mode="analytics">Analytics</button>
+                </nav>
+            </div>
+        </header>
 
-  <div id="game"></div>
-  
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Video Avatar Section -->
+            <section class="avatar-section">
+                <div class="avatar-container">
+                    <div id="avatar-canvas"></div>
+                    <div class="avatar-overlay">
+                        <div class="status-indicator">
+                            <div class="pulse-ring"></div>
+                            <div class="status-dot"></div>
+                        </div>
+                        <div class="avatar-name">Sarah - Sales Expert</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Chat Interface -->
+            <section class="chat-section">
+                <div class="chat-container">
+                    <div class="chat-header">
+                        <h2>Sales Role-Play Session</h2>
+                        <div class="scenario-selector">
+                            <select id="scenario-select">
+                                <option value="cold-call">Cold Call</option>
+                                <option value="product-demo">Product Demo</option>
+                                <option value="objection-handling">Objection Handling</option>
+                                <option value="closing">Closing Techniques</option>
+                                <option value="follow-up">Follow-up Call</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai-message">
+                            <div class="message-avatar">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div class="message-content">
+                                <p>Hello! I'm Sarah, your AI sales training assistant. I'm here to help you practice your sales skills through realistic role-play scenarios. Choose a scenario above and let's begin!</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="chat-input-container">
+                        <div class="input-group">
+                            <input type="text" id="chat-input" placeholder="Type your message or use voice input..." />
+                            <button id="voice-btn" class="voice-btn">
+                                <i class="fas fa-microphone"></i>
+                            </button>
+                            <button id="send-btn" class="send-btn">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Controls Panel -->
+            <section class="controls-section">
+                <div class="controls-panel">
+                    <div class="control-group">
+                        <label>Voice Settings</label>
+                        <div class="voice-controls">
+                            <select id="voice-select">
+                                <option value="female-professional">Sarah (Professional)</option>
+                                <option value="male-friendly">Mike (Friendly)</option>
+                                <option value="female-energetic">Emma (Energetic)</option>
+                            </select>
+                            <div class="slider-group">
+                                <label>Speed</label>
+                                <input type="range" id="speech-rate" min="0.5" max="2" step="0.1" value="1">
+                            </div>
+                            <div class="slider-group">
+                                <label>Pitch</label>
+                                <input type="range" id="speech-pitch" min="0.5" max="2" step="0.1" value="1">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>Session Controls</label>
+                        <div class="session-controls">
+                            <button id="start-session" class="control-btn primary">
+                                <i class="fas fa-play"></i> Start Session
+                            </button>
+                            <button id="pause-session" class="control-btn">
+                                <i class="fas fa-pause"></i> Pause
+                            </button>
+                            <button id="reset-session" class="control-btn">
+                                <i class="fas fa-refresh"></i> Reset
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label>Performance Metrics</label>
+                        <div class="metrics">
+                            <div class="metric">
+                                <span class="metric-label">Confidence</span>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 75%"></div>
+                                </div>
+                                <span class="metric-value">75%</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric-label">Engagement</span>
+                                <div class="metric-bar">
+                                    <div class="metric-fill" style="width: 82%"></div>
+                                </div>
+                                <span class="metric-value">82%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Initializing AI Assistant...</p>
+        </div>
+    </div>
 </body>
-
 </html>
